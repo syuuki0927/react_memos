@@ -4,7 +4,7 @@ const EditMemo = ({ memo, onClickSave, onClickDelete }) => {
   const [memoText, setMemoText] = useState("");
   useEffect(() => {
     setMemoText(memo.content);
-  }, []);
+  }, [memo.content]);
 
   return (
     <>
