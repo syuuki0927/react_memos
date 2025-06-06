@@ -6,12 +6,9 @@ import DetailMemo from "./DetailMemo";
 function App() {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [memos, setMemos] = useState([]);
-  const [newMemo, setNewMemo] = useState(null);
 
   const showMemo = () => {
-    if (newMemo) {
-      return newMemo;
-    } else if (selectedIndex !== null) {
+    if (selectedIndex !== null) {
       return memos[selectedIndex];
     } else {
       return undefined;
@@ -23,34 +20,24 @@ function App() {
   };
 
   const createNewMemo = () => {
-    setNewMemo({ content: "新規メモ" });
+    setMemos([...memos, { content: "新規メモ" }]);
+    setSelectedIndex(memos.length);
   };
 
   const saveMemos = (content) => {
-    if (newMemo) {
-      newMemo.content = content;
-      setMemos([...memos, newMemo]);
-      setNewMemo(null);
-      setSelectedIndex(null);
-    } else {
-      setMemos([
-        ...memos.slice(0, selectedIndex),
-        { content: content },
-        ...memos.slice(selectedIndex + 1),
-      ]);
-      setSelectedIndex(null);
-    }
+    setMemos([
+      ...memos.slice(0, selectedIndex),
+      { content: content },
+      ...memos.slice(selectedIndex + 1),
+    ]);
+    setSelectedIndex(null);
   };
 
   const deleteMemo = () => {
-    if (newMemo) {
-      setNewMemo(null);
-    } else {
-      setMemos([
-        ...memos.slice(0, selectedIndex),
-        ...memos.slice(selectedIndex + 1),
-      ]);
-    }
+    setMemos([
+      ...memos.slice(0, selectedIndex),
+      ...memos.slice(selectedIndex + 1),
+    ]);
   };
 
   useEffect(() => {
