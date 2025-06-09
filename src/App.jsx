@@ -42,7 +42,7 @@ function App() {
 
   useEffect(() => {
     const checkMemos = JSON.parse(localStorage.getItem("memos"));
-    setMemos(checkMemos);
+    setMemos(checkMemos ? checkMemos : []);
   }, []);
 
   useEffect(() => {
