@@ -38,6 +38,7 @@ function App() {
       ...memos.slice(0, selectedIndex),
       ...memos.slice(selectedIndex + 1),
     ]);
+    setSelectedIndex(null);
   };
 
   useEffect(() => {
